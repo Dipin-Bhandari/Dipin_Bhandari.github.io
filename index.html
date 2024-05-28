@@ -781,95 +781,114 @@
         </header>
 
         <section class="projects">
-
           <ul class="filter-list">
-
             <li class="filter-item">
-              <button class="active" data-filter-btn>All</button>
+              <button class="active" data-filter-btn data-filter="all">All</button>
             </li>
-
             <li class="filter-item">
-              <button data-filter-btn>Applications</button>
+              <button data-filter-btn data-filter="applications">Applications</button>
             </li>
-
             <li class="filter-item">
-              <button data-filter-btn>Web development</button>
+              <button data-filter-btn data-filter="web development">Web Development</button>
             </li>
-
           </ul>
-
+        
           <div class="filter-select-box">
-
             <button class="filter-select" data-select>
-
-              <div class="select-value" data-selecct-value>Select category</div>
-
+              <div class="select-value" data-select-value>Select category</div>
               <div class="select-icon">
                 <ion-icon name="chevron-down"></ion-icon>
               </div>
-
             </button>
-
             <ul class="select-list">
-
               <li class="select-item">
-                <button data-select-item>All</button>
+                <button data-select-item data-filter="all">All</button>
               </li>
-
               <li class="select-item">
-                <button data-select-item>Applications</button>
+                <button data-select-item data-filter="applications">Applications</button>
               </li>
-
               <li class="select-item">
-                <button data-select-item>Web development</button>
+                <button data-select-item data-filter="web development">Web Development</button>
               </li>
-
             </ul>
-
           </div>
-
+        
           <ul class="project-list">
-
-            <li class="project-item  active" data-filter-item data-category="web development">
+            <li class="project-item active" data-filter-item data-category="web development">
               <a href="https://github.com/Dipin-Bhandari/group-chat-web-application.git" target="_blank">
-
                 <figure class="project-img">
                   <div class="project-item-icon-box">
                     <ion-icon name="eye-outline"></ion-icon>
                   </div>
-
-                  <img src="./assets/images/project1.jpg" alt="finance" loading="lazy">
+                  <img src="./assets/images/project1.jpg" alt="Group Chatting Web Application" loading="lazy">
                 </figure>
-
                 <h3 class="project-title">Group Chatting Web Application</h3>
-
-                <p class="project-category">Web development</p>
-
+                <p class="project-category">Web Development</p>
               </a>
             </li>
-
-            <li class="project-item  active" data-filter-item data-category="web development">
+        
+            <li class="project-item active" data-filter-item data-category="web development">
               <a href="https://github.com/Dipin-Bhandari/Handwritten-digit-recognition-project.git" target="_blank">
-
                 <figure class="project-img">
                   <div class="project-item-icon-box">
                     <ion-icon name="eye-outline"></ion-icon>
                   </div>
-
-                  <img src="./assets/images/project2.png" alt="orizon" loading="lazy">
+                  <img src="./assets/images/project2.png" alt="Handwritten Digit Recognition" loading="lazy">
                 </figure>
-
                 <h3 class="project-title">Handwritten Digit Recognition</h3>
-
-                <p class="project-category">ML + Web development </p>
-
+                <p class="project-category">ML + Web Development</p>
               </a>
             </li>
-
-
+        
+            <li class="project-item active" data-filter-item data-category="applications">
+              <a href="https://github.com/Dipin-Bhandari/The_Snake_Game_CPP" target="_blank">
+                <figure class="project-img">
+                  <div class="project-item-icon-box">
+                    <ion-icon name="eye-outline"></ion-icon>
+                  </div>
+                  <img src="./assets/images/snake_game_screenshot.png" alt="The Snake Game" loading="lazy">
+                </figure>
+                <h3 class="project-title">The Snake Game</h3>
+                <p class="project-category">CPP Application Development</p>
+              </a>
+            </li>
           </ul>
-
         </section>
+        
+        <script>
+          document.querySelectorAll('[data-filter-btn]').forEach(button => {
+            button.addEventListener('click', () => {
+              const filterValue = button.getAttribute('data-filter');
+              document.querySelectorAll('[data-filter-btn]').forEach(btn => btn.classList.remove('active'));
+              button.classList.add('active');
+              document.querySelectorAll('[data-filter-item]').forEach(item => {
+                if (filterValue === 'all' || item.getAttribute('data-category') === filterValue) {
+                  item.classList.add('active');
+                } else {
+                  item.classList.remove('active');
+                }
+              });
+            });
+          });
+        
+          document.querySelectorAll('[data-select-item]').forEach(selectItem => {
+            selectItem.addEventListener('click', () => {
+              const filterValue = selectItem.getAttribute('data-filter');
+              document.querySelector('[data-select-value]').textContent = selectItem.textContent;
+              document.querySelectorAll('[data-select-item]').forEach(item => item.classList.remove('active'));
+              selectItem.classList.add('active');
+              document.querySelectorAll('[data-filter-item]').forEach(item => {
+                if (filterValue === 'all' || item.getAttribute('data-category') === filterValue) {
+                  item.classList.add('active');
+                } else {
+                  item.classList.remove('active');
+                }
+              });
+            });
+          });
+        </script>
+        
+
 
       </article>
       
